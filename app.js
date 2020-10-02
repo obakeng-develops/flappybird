@@ -51,9 +51,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function jump() {
+        clearInterval(downTimerId)
         upTimerId = setInterval(function () {
+            doodlerBottomSpace += 20
+            doodler.style.bottom = doodlerBottomSpace + 'px'
+            if (doodlerBottomSpace > 350) {
+                fall()
+            }
+        }, 30)
+    }
+
+    function fall() {
+        clearInterval(upTimerId)
+        downTimerId = setInterval(function () {
+            doodlerBottomSpace -= 5
+            doodler.style.bottom = doodlerBottomSpace + 'px'
+            if (doodlerBottomSpace <= 0) {
+                gameOver()
+            }
 
         }, 30)
+    }
+
+    function gameOver() {
+        isGameOver = true
+        clearInterval(upTimerId)
+        clearInterval(downTimerId)
     }
 
     function start() {
