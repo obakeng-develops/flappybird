@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const doodler = document.createElement('div')
     let doodlerLeftSpace = 50
     let doodlerBottomSpace = 150
+    let isGameOver = false
 
     function createDoodler() {
         grid.appendChild(doodler)
@@ -11,5 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         doodler.style.bottom = doodlerBottomSpace + 'px'
     }
 
-    createDoodler()
+    function start() {
+        if(!isGameOver) {
+            createDoodler()
+            createPlatforms()
+        }
+    }
+    //attach to button
+    start()
+
 })
