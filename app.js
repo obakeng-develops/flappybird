@@ -109,11 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             moveRight()
         } else if (e.key === "ArrowUp") {
-            //moveStraight
+            moveStraight()
         }
     }
 
     function moveLeft() {
+        if (isGoingRight) {
+            clearInterval(rightTimerId)
+            isGoingRight = false
+        }
         isGoingLeft = true
         leftTimerId = setInterval(function () {
             if (doodlerLeftSpace >= 0) {
@@ -124,6 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function moveRight() {
+        if (isGoingLeft) {
+            clearInterval(leftTimerId)
+            isGoingLeft = false
+        }
         isGoingRight = true
         rightTimerId = setInterval(function () {
             if (doodlerLeftSpace <= 340) {
@@ -131,6 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 doodler.style.left = doodlerLeftSpace + 'px'
             } else moveLeft()
         }, 30)
+    }
+
+    function moveStraight() {
+        isGoingRight = false
+        isGoingLeft = false
+        clearInterval(rightTimerId)
+        clearInterval(leftTimerId)
     }
 
     function start() {
