@@ -1,4 +1,4 @@
-#About
+# About
 Flappy Bird! The fun arcade game in JavaScript!
 
 ## Features
